@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+<head><title>Withdraw</title></head>
+<body>
+  <h2>Withdraw Amount</h2>
+  {% if error %}<p style="color:red;">{{ error }}</p>{% endif %}
+  <form method="POST">
+    Amount: <input type="number" name="amount" required>
+    <input type="submit" value="Withdraw">
+  </form>
+  <a href="/menu">Back to Menu</a>
+</body>
+</html>
