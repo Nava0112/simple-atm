@@ -1,0 +1,26 @@
+version: 2.1
+
+jobs:
+  test:
+    docker:
+      - image: cimg/python:3.10  # CircleCI official Python image
+    steps:
+      - checkout
+
+      - setup_remote_docker:
+          version: 20.10.24  # Enables Docker-in-Docker
+
+      - run:
+          name: Build test image from Dockerfile
+          command: |
+            docker build --target test-env -t flask-bank-test .
+
+      - run:
+          name: Run Pytest inside test container
+          command: |
+            docker run --rm flask-bank-test
+workflows:
+  version: 2
+  test-workflow:
+    jobs:
+      - test
